@@ -24,7 +24,9 @@ export default function TableList({
     const confirmDelete = window.confirm("Deseja deletar este colaborador ?");
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/clients/${id}`);
+        await axios.delete(
+          `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/clients/${id}`
+        );
         setTableData((prevData) =>
           prevData.filter((client) => client.id !== id)
         );

@@ -14,7 +14,9 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/clients");
+      const response = await axios.get(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/clients`
+      );
       setTableData(response.data);
     } catch (err) {
       console.error("error updating client:", err);
@@ -35,7 +37,7 @@ function App() {
     if (modalMode === "add") {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/clients",
+          `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/clients`,
           newClientData
         );
         console.log("Client added:", response.data);
@@ -48,7 +50,9 @@ function App() {
       console.log("Updating client with ID:", clientData.id);
       try {
         const response = await axios.put(
-          `http://localhost:3000/api/clients/${clientData.id}`,
+          `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/clients/${
+            clientData.id
+          }`,
           newClientData
         );
         console.log("Client Updated:", response.data);
